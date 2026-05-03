@@ -1,49 +1,60 @@
-# Live Translator
+# 🎙️ Discord Live Subtitle (JA -> VI)
 
-Live Translator là một ứng dụng web cung cấp tính năng nhận diện giọng nói và dịch thuật phụ đề theo thời gian thực (Real-time Subtitles), tập trung vào việc dịch từ **tiếng Nhật sang tiếng Việt**. Ứng dụng được thiết kế đặc biệt để hỗ trợ các cuộc họp trên Discord, hội thảo trực tuyến, hoặc xem video không có sẵn phụ đề.
+Ứng dụng web dịch thuật trực tiếp (Real-time Translation) siêu tốc độ, được thiết kế chuyên biệt để hỗ trợ các cuộc họp tiếng Nhật trên Discord, Google Meet, hoặc xem video YouTube.
 
-## 🌟 Tính năng nổi bật
+Ứng dụng lắng nghe âm thanh hệ thống, tự động nhận diện giọng nói tiếng Nhật và hiển thị bản dịch tiếng Việt gần như ngay lập tức với giao diện chia đôi màn hình chuyên nghiệp (Split UI).
 
-- **Speech-to-Text (Nhận diện giọng nói) chính xác:** Thay thế Web Speech API mặc định bằng mô hình AI mạnh mẽ **Whisper** (thông qua Transformers.js), giúp nhận diện tiếng Nhật với độ chính xác cực cao.
-- **Dịch thuật thời gian thực:** Sử dụng mô hình **NLLB** (No Language Left Behind) để dịch trực tiếp ngữ cảnh từ tiếng Nhật sang tiếng Việt một cách mượt mà.
-- **Local-first & Quyền riêng tư (Privacy-focused):** Mọi quá trình nhận diện và dịch thuật được thực hiện **100% trên trình duyệt (client-side)**. Dữ liệu âm thanh của bạn không bao giờ bị gửi lên các máy chủ bên thứ ba.
-- **Thu âm hệ thống (System Audio Capture):** Hỗ trợ chụp âm thanh trực tiếp từ tab hoặc hệ thống (Screen/Tab Share), loại bỏ tạp âm và khắc phục những hạn chế của việc thu âm qua microphone thông thường.
+## ✨ Tính năng nổi bật
 
-## 🛠️ Công nghệ sử dụng
+- **Tốc độ cực nhanh (Real-time):** Sử dụng `Web Speech API` mặc định của Chrome giúp chữ tiếng Nhật xuất hiện ngay lập tức theo tốc độ nói, không có độ trễ.
+- **Dịch thuật chính xác & Miễn phí:** Tích hợp trực tiếp với API mở của Google Translate, mang lại bản dịch tiếng Việt chuẩn xác chỉ trong ~0.2 giây mà không cần cấu hình API Key rườm rà.
+- **Giao diện Split UI (Chia đôi màn hình):**
+  - **Cột Trái (Live Caption):** Hiển thị duy nhất câu đang nói với kích thước lớn, tập trung tối đa.
+  - **Cột Phải (Meeting Transcript):** Tự động lưu trữ và hiển thị toàn bộ lịch sử các câu đã nói kèm bản dịch (như một cuốn sổ tay ghi chú), có thanh cuộn mượt mà.
+- **Premium Dark Theme:** Giao diện tối hiện đại, bảo vệ mắt và mang lại cảm giác chuyên nghiệp.
 
-- **Frontend:** React 19, Vite.
-- **AI & Machine Learning:** [@xenova/transformers](https://www.npmjs.com/package/@xenova/transformers) (Chạy các mô hình NLP trực tiếp trên trình duyệt qua WebAssembly).
-- **Mô hình AI:** Whisper (Speech-to-text) và NLLB (Machine Translation).
+## ⚙️ Yêu cầu hệ thống (Rất Quan Trọng)
 
-## 🚀 Hướng dẫn cài đặt và sử dụng
+Vì `Web Speech API` của trình duyệt mặc định **chỉ lắng nghe từ thiết bị Microphone**, nó không thể tự nghe được âm thanh phát ra từ tab YouTube hay phần mềm Discord. Bạn **bắt buộc** phải sử dụng tính năng **Stereo Mix** của Windows để chuyển đổi âm thanh hệ thống thành tín hiệu Micro.
 
-### 1. Yêu cầu
-- Đã cài đặt [Node.js](https://nodejs.org/).
-- Trình duyệt hiện đại hỗ trợ WebAssembly và MediaDevices/Screen Capture API (Google Chrome, Microsoft Edge, v.v.).
+**Cách bật Stereo Mix trên Windows:**
+1. Chuột phải vào biểu tượng chiếc Loa ở góc dưới cùng bên phải màn hình (Taskbar) -> Chọn **Sound settings** (Cài đặt âm thanh).
+2. Cuộn xuống tìm và chọn **More sound settings** (đối với Windows 11) hoặc tab **Recording** (đối với Windows 10).
+3. Tại tab **Recording**, chuột phải vào vùng trống -> Tích chọn **Show Disabled Devices**.
+4. Bạn sẽ thấy thiết bị tên **Stereo Mix** (hoặc Wave Out Mix). Chuột phải vào nó -> **Enable**.
+5. Chuột phải vào Stereo Mix lần nữa -> **Set as Default Device**.
+6. Khởi động lại trình duyệt Chrome/Edge của bạn.
 
-### 2. Cài đặt dự án
-Clone repository về máy và di chuyển vào thư mục dự án:
+*(Lưu ý: Nếu không muốn dùng Stereo Mix, bạn phải mở âm thanh máy tính ra loa ngoài đủ lớn để Micro vật lý của máy tính thu lại được).*
+
+## 🚀 Hướng dẫn Cài đặt & Chạy ứng dụng
+
+Dự án được xây dựng bằng Vite + ReactJS.
+
 ```bash
-git clone <repository-url>
-cd live-translator
-```
-
-Cài đặt các gói phụ thuộc (dependencies):
-```bash
+# 1. Cài đặt các thư viện cần thiết
 npm install
-```
 
-### 3. Khởi chạy môi trường phát triển (Development)
-Chạy lệnh sau để khởi động ứng dụng:
-```bash
+# 2. Khởi chạy máy chủ phát triển (Development Server)
 npm run dev
 ```
-Mở trình duyệt và truy cập vào địa chỉ hiển thị trên terminal (thường là `http://localhost:5173`).
 
-### 💡 Lưu ý quan trọng
-- **Tải mô hình AI lần đầu:** Trong lần chạy đầu tiên, Transformers.js sẽ tự động tải các mô hình AI (Whisper và NLLB) về máy và lưu vào cache của trình duyệt. Quá trình này có thể mất một chút thời gian tùy thuộc vào tốc độ mạng của bạn. Các lần sử dụng sau sẽ nhanh hơn rất nhiều vì mô hình đã được lưu sẵn (cached).
-- Để thu âm thanh hệ thống (như âm thanh từ Discord), khi trình duyệt hiện hộp thoại yêu cầu quyền chia sẻ màn hình/âm thanh, hãy nhớ chọn **"Share tab"** hoặc **"Share system audio"** tùy theo trình duyệt.
+Sau khi chạy lệnh trên, hãy mở trình duyệt (Khuyên dùng **Google Chrome** để Web Speech API hoạt động tốt nhất) và truy cập vào đường dẫn `http://localhost:5173`.
 
-## 📄 Giấy phép (License)
+## 🖥️ Cách sử dụng
 
-Dự án này được tạo ra cho mục đích sử dụng cá nhân và phát triển công cụ AI dịch thuật thời gian thực.
+1. Đảm bảo bạn đã cấu hình xong **Stereo Mix** làm Microphone mặc định.
+2. Mở ứng dụng trên trình duyệt.
+3. Bấm nút **"Bắt đầu nghe"** ở cột bên trái.
+4. Trình duyệt sẽ yêu cầu cấp quyền Microphone, hãy chọn **Allow (Cho phép)**.
+5. Mở phần mềm Discord hoặc một tab YouTube tiếng Nhật và bắt đầu phát âm thanh.
+6. Tận hưởng phụ đề trực tiếp trên màn hình!
+
+## 🛠️ Công nghệ sử dụng
+- **Frontend:** ReactJS, Vite
+- **Styling:** Vanilla CSS (CSS Grid, Flexbox, Animations)
+- **Speech-To-Text:** `window.SpeechRecognition` (Web Speech API)
+- **Translation:** Fetch API tới endpoint `translate.googleapis.com`
+
+---
+*Developed with 💖 by Antigravity AI*
