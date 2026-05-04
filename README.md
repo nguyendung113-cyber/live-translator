@@ -25,7 +25,14 @@ Vì `Web Speech API` của trình duyệt mặc định **chỉ lắng nghe từ
 5. Chuột phải vào Stereo Mix lần nữa -> **Set as Default Device**.
 6. Khởi động lại trình duyệt Chrome/Edge của bạn.
 
-*(Lưu ý: Nếu không muốn dùng Stereo Mix, bạn phải mở âm thanh máy tính ra loa ngoài đủ lớn để Micro vật lý của máy tính thu lại được).*
+**Giải pháp thay thế nếu máy không có Stereo Mix (Sử dụng VB-Cable):**
+1. Truy cập [vb-audio.com/Cable](https://vb-audio.com/Cable/) và tải phiên bản cho Windows (Hoàn toàn miễn phí).
+2. Cài đặt bằng cách giải nén và chạy file `VBCABLE_Setup_x64.exe` dưới quyền **Administrator**, sau đó khởi động lại máy tính.
+3. Chọn thiết bị phát âm thanh (Speaker/Playback) của Windows là **CABLE Input (VB-Audio Virtual Cable)**.
+4. Chọn thiết bị thu âm thanh (Microphone/Recording) mặc định là **CABLE Output (VB-Audio Virtual Cable)**.
+5. *(Tuỳ chọn)* Để vừa dịch vừa tự nghe được âm thanh bằng tai nghe: Vào `Sound Control Panel` > tab `Recording` > Chuột phải vào `CABLE Output` > Chọn `Properties` > tab `Listen` > Tích vào **"Listen to this device"** và chọn tai nghe của bạn ở ô bên dưới.
+
+*(Lưu ý: Nếu không muốn dùng phần mềm hay thiết bị ảo, bạn phải mở âm thanh máy tính ra loa ngoài đủ lớn để Micro vật lý của máy tính thu lại được).*
 
 ## 🚀 Hướng dẫn Cài đặt & Chạy ứng dụng
 
